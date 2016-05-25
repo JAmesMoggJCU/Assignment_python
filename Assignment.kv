@@ -13,7 +13,7 @@ BoxLayout:
                 text: 'Item Name:'
 
             TextInput:
-                id: Item_Name_Catch
+                id: Item_Name
                 multiline: False
                 write_tab: False
 
@@ -21,7 +21,7 @@ BoxLayout:
                 text: 'Description:'
 
             TextInput:
-                id: Item_Description_Catch
+                id: Item_Description
                 multiline: False
                 write_tab: False
 
@@ -29,14 +29,13 @@ BoxLayout:
                 text: 'Price Per Day:'
 
             TextInput:
-                id: Item_Price_Catch
+                id: Item_Price
                 multiline: False
                 write_tab: False
 
             Button:
                 text: 'Save Item'
-                on_release: app.press_save()
-                #on_release: app.press_save(textfrominputgoeshere.text,textfrominputgoeshere.text)
+                on_release: app.save_item(Item_Name.text, Item_Description.text, Item_Price.text)
 
             Button:
                 text: 'Cancel'
@@ -48,30 +47,40 @@ BoxLayout:
 
     BoxLayout:
         orientation: 'vertical'
-        Button:
-            id: BUTTON_FUNCTION_HERE
-            text: 'List Items'
-            on_press: app.show_all_items()
+        BoxLayout:
+            orientation: 'horizontal'
 
-        Button:
-            id: BUTTON_FUNCTION_HERE
-            text: 'Hire Items'
-            #on_press: app.convert_button()
+            BoxLayout:
+                orientation: 'vertical'
 
-        Button:
-            id: BUTTON_FUNCTION_HERE
-            text: 'Return Items'
-            #on_press: app.convert_button()
+                Button:
+                    id: BUTTON_FUNCTION_HERE
+                    text: 'List Items'
+                    on_press: app.show_all_items()
 
-        Button:
-            id: BUTTON_FUNCTION_HERE
-            text: 'Confirm'
-            #on_press: app.convert_button()
+                Button:
+                    id: BUTTON_FUNCTION_HERE
+                    text: 'Hire Items'
+                    #on_press: app.convert_button()
 
-        Button:
-            id: addButton
-            text: 'Add New Entry'
+                Button:
+                    id: BUTTON_FUNCTION_HERE
+                    text: 'Return Items'
+                    #on_press: app.convert_button()
 
+                Button:
+                    id: BUTTON_FUNCTION_HERE
+                    text: 'Confirm'
+                    #on_press: app.convert_button()
+
+                Button:
+                    id: addButton
+                    text: 'Add New Entry'
+                    on_press: app.press_add()
+
+            GridLayout
+                id: entriesBox
+                cols: 2
 
         Label:
             id: BUTTON_FUNCTION_HERE
