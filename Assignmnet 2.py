@@ -37,6 +37,7 @@ class ItemsForHireApp(App):
         self.root.ids.popup.dismiss()
 
     def list_buttons(self):
+        self.remove_widgets()
         for printing_items in self.itemlisting.item_list:
             if printing_items.in_out == "out":
                 item_button = Button(text=printing_items.name)
@@ -47,6 +48,22 @@ class ItemsForHireApp(App):
                 item_button.background_color = (1,1,0,1)
                 self.root.ids.entriesBox.add_widget(item_button)
 
+    def hire_button(self):
+         self.remove_widgets()
+         for printing_items in self.itemlisting.item_list:
+            if printing_items.in_out == "in":
+                item_button = Button(text=printing_items.name)
+                item_button.background_color = (1,1,0,1)
+                self.root.ids.entriesBox.add_widget(item_button)
+
+    def return_button(self):
+        self.remove_widgets()
+        for printing_items in self.itemlisting.item_list:
+            if printing_items.in_out == "out":
+                item_button = Button(text=printing_items.name)
+                item_button.background_color = (1,0,0,1)
+                self.root.ids.entriesBox.add_widget(item_button)
+
     def save_item(self, Item_Name, Item_Description, Item_Price):
         self.itemlisting.item_list.append(Item(Item_Name, Item_Description, Item_Price, "in"))
         item_button = Button(text=Item_Name)
@@ -54,19 +71,10 @@ class ItemsForHireApp(App):
         self.root.ids.entriesBox.add_widget(item_button)
         self.root.ids.popup.dismiss()
 
+    def remove_widgets(self):
+        self.root.ids.entriesBox.clear_widgets()
 
-    def show_all_items(self):
-        # this is the function that prints all items in the list
-        #print("All items on file (* indicates item is currently out):")
-        #item_count_number = -1
-        """for printing_items in self.itemlisting.item_list:
-            print(printing_items)
-            if len(printing_items[3]) == 3:
-                item_count_number += 1
-                print("{0} = {1} = ${2} *".format(item_count_number, printing_items[0:2], printing_items[2]))
-            else:
-                item_count_number += 1
-                print("{0} = {1} = ${2}".format(item_count_number, printing_items[0:2], printing_items[2]))"""
+
 
 
 ItemsForHireApp().run()
